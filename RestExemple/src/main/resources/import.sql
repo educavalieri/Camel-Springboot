@@ -1,0 +1,1 @@
+insert into tb_user(id, email) values (1, 'Eduardo')
