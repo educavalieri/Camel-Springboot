@@ -20,7 +20,7 @@ public class GetRestRouter extends RouteBuilder {
 
         rest()
                 .get("/user")
-//                .routeId("get-rest-router")
+                .routeId("get-rest-router")
                 .consumes(MediaType.APPLICATION_JSON_VALUE)
 //                .produces(MediaType.APPLICATION_JSON_VALUE)
                 .produces("text/plain")
