@@ -10,5 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserResponse {
 
+    private Integer id;
     private String email;
 }

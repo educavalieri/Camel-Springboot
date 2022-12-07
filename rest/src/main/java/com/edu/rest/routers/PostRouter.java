@@ -2,6 +2,7 @@ package com.edu.rest.routers;
 
 import com.edu.rest.components.UserBean;
 import com.edu.rest.dtos.UserRequest;
+import com.edu.rest.dtos.UserResponse;
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http.HttpMethods;
@@ -29,15 +30,14 @@ public class PostRouter extends RouteBuilder {
                 .log("${body}")
                 .setHeader(Exchange.HTTP_METHOD, HttpMethods.POST)
                 .setHeader(Exchange.CONTENT_TYPE, constant(MediaType.APPLICATION_JSON_VALUE))
-//                .outputType(UserRequest.class)
-                .bean(new UserBean(), "insertUser")
                 .removeHeader("CamelHttp*")
-        //        .setHeader(Exchange.CONTENT_ENCODING, constant("UTF-8"))
                 .marshal().json(JsonLibrary.Jackson)
                 .log("${body}")
-                .to("rest:post:/user/insert")
-                .unmarshal().json(JsonLibrary.Jackson)
-                .bean(new UserBean(), "returnUser")
+                .to("rest:post:/user/insert?bridgeEndpoint=true")
+//                .unmarshal().json(JsonLibrary.Jackson)
+                .log("${body}")
+                .unmarshal().json(UserResponse.class)
+//                .bean(new UserBean(), "insertUser")
                 .log("${body}");
 
     }

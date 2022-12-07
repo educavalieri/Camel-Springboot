@@ -5,14 +5,16 @@ import com.edu.rest.dtos.UserResponse;
 import org.apache.camel.Exchange;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 @Component
+
 public class UserBean {
 
     public void insertUser(Exchange exchange){
-        UserRequest user = exchange.getMessage().getBody(UserRequest.class);
-        UserResponse userResponse = new UserResponse();
-        userResponse.setEmail(user.getEmail());
 
+        UserResponse userResponse = exchange.getMessage().getBody(UserResponse.class);
         exchange.getMessage().setBody(userResponse);
     }
 
