@@ -37,7 +37,9 @@ public class PostRouter extends RouteBuilder {
 //                .unmarshal().json(JsonLibrary.Jackson)
                 .log("${body}")
                 .unmarshal().json(UserResponse.class)
-//                .bean(new UserBean(), "insertUser")
+                .log("${body}")
+                .bean(new UserBean(), "returnUser")
+
                 .log("${body}");
 
     }

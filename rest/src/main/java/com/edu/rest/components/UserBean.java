@@ -18,12 +18,11 @@ public class UserBean {
         exchange.getMessage().setBody(userResponse);
     }
 
-    public void returnUser(Exchange exchange){
-        UserResponse user = exchange.getMessage().getBody(UserResponse.class);
-        UserRequest userRequest = new UserRequest();
-        userRequest.setEmail(user.getEmail());
+    public UserRequest returnUser(UserResponse response){
 
-        exchange.getMessage().setBody(userRequest);
+        UserRequest userRequest = new UserRequest();
+        userRequest.setEmail(response.getEmail());
+        return userRequest;
 
     }
 
